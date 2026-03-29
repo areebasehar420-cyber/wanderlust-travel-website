@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wanderlust — Discover the World</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="nav-logo">✦ Wanderlust</div>
+    <ul class="nav-links">
+      <li><a href="#destinations">Destinations</a></li>
+      <li><a href="#packages">Packages</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="btn-outline" onclick="openModal('loginModal')">Login</button>
+      <button class="btn-primary" onclick="openModal('bookModal')">Book Now</button>
+    </div>
+    <button class="hamburger" id="hamburger">&#9776;</button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-bg">
+      <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1800&q=80" alt="Hero" class="hero-img active" id="img0"/>
+      <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1800&q=80" alt="Hero" class="hero-img" id="img1"/>
+      <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1800&q=80" alt="Hero" class="hero-img" id="img2"/>
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-content">
+      <p class="hero-tag">✦ Your Journey Begins Here</p>
+      <h1 class="hero-title">Explore the <br><em>World's Wonders</em></h1>
+      <p class="hero-sub">Handcrafted travel experiences that turn your dreams into unforgettable memories.</p>
+      <div class="hero-btns">
+        <button class="btn-primary large" onclick="document.getElementById('destinations').scrollIntoView({behavior:'smooth'})">Explore Destinations</button>
+        <button class="btn-ghost large" onclick="openModal('bookModal')">Plan My Trip</button>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num" data-target="120">0</span><span>+</span><p>Destinations</p></div>
+      <div class="stat"><span class="stat-num" data-target="50000">0</span><span>+</span><p>Travelers</p></div>
+      <div class="stat"><span class="stat-num" data-target="15">0</span><span>+</span><p>Years Experience</p></div>
+      <div class="stat"><span class="stat-num" data-target="98">0</span><span>%</span><p>Satisfaction</p></div>
+    </div>
+    <div class="hero-dots">
+      <span class="dot active" onclick="switchHero(0)"></span>
+      <span class="dot" onclick="switchHero(1)"></span>
+      <span class="dot" onclick="switchHero(2)"></span>
+    </div>
+  </section>
+
+  <!-- SEARCH BAR -->
+  <section class="search-section">
+    <div class="search-card">
+      <div class="search-tabs">
+        <button class="stab active">🌍 All Trips</button>
+        <button class="stab">🏖 Beach</button>
+        <button class="stab">🏔 Mountain</button>
+        <button class="stab">🏙 City</button>
+      </div>
+      <div class="search-fields">
+        <div class="sfield">
+          <label>Where to?</label>
+          <input type="text" placeholder="Destination, City or Country" id="searchDest"/>
+        </div>
+        <div class="sfield">
+          <label>Check In</label>
+          <input type="date" id="searchDate"/>
+        </div>
+        <div class="sfield">
+          <label>Travelers</label>
+          <select id="searchGuests">
+            <option>1 Person</option>
+            <option>2 People</option>
+            <option>3-5 People</option>
+            <option>6+ People</option>
+          </select>
+        </div>
+        <button class="btn-primary search-btn" onclick="handleSearch()">Search</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESTINATIONS -->
+  <section class="section" id="destinations">
+    <div class="section-header">
+      <p class="section-tag">✦ Top Picks</p>
+      <h2>Popular <em>Destinations</em></h2>
+      <p class="section-sub">Curated locations loved by thousands of travelers worldwide.</p>
+    </div>
+    <div class="dest-grid" id="destGrid">
+      <!-- Populated by JS -->
+    </div>
+    <div style="text-align:center;margin-top:3rem">
+      <button class="btn-outline large" onclick="loadMoreDest()">Load More Destinations</button>
+    </div>
+  </section>
+
+  <!-- PACKAGES -->
+  <section class="section alt-bg" id="packages">
+    <div class="section-header">
+      <p class="section-tag">✦ Curated Experiences</p>
+      <h2>Travel <em>Packages</em></h2>
+      <p class="section-sub">All-inclusive deals crafted for every kind of traveler.</p>
+    </div>
+    <div class="pkg-grid" id="pkgGrid">
+      <!-- Populated by JS -->
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="section why-section">
+    <div class="why-left">
+      <p class="section-tag">✦ Why Wanderlust?</p>
+      <h2>Travel Smarter,<br><em>Live Deeper</em></h2>
+      <p>We go beyond booking — we craft experiences that resonate with your soul. Every detail, every moment, thoughtfully designed.</p>
+      <ul class="why-list">
+        <li>✦ Expert local guides in every destination</li>
+        <li>✦ 24/7 traveler support worldwide</li>
+        <li>✦ Flexible booking & free cancellation</li>
+        <li>✦ Sustainable & responsible travel</li>
+      </ul>
+      <button class="btn-primary" onclick="openModal('bookModal')">Start Your Journey</button>
+    </div>
+    <div class="why-right">
+      <div class="why-img-wrap">
+        <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=700&q=80" alt="Travel experience"/>
+        <div class="why-badge">
+          <span class="badge-num">4.9</span>
+          <span>★ Rated</span>
+          <small>50k+ Reviews</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="section" id="gallery">
+    <div class="section-header">
+      <p class="section-tag">✦ Moments</p>
+      <h2>Travel <em>Gallery</em></h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="gitem tall"><img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=600&q=80" alt="Gallery"/></div>
+      <div class="gitem"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80" alt="Gallery"/></div>
+      <div class="gitem"><img src="https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=600&q=80" alt="Gallery"/></div>
+      <div class="gitem wide"><img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=900&q=80" alt="Gallery"/></div>
+      <div class="gitem"><img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=600&q=80" alt="Gallery"/></div>
+      <div class="gitem tall"><img src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?w=600&q=80" alt="Gallery"/></div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section alt-bg" id="testimonials">
+    <div class="section-header">
+      <p class="section-tag">✦ Traveler Stories</p>
+      <h2>What They <em>Say</em></h2>
+    </div>
+    <div class="testi-slider" id="testiSlider">
+      <!-- Populated by JS -->
+    </div>
+    <div class="testi-nav">
+      <button onclick="prevTesti()">&#8592;</button>
+      <button onclick="nextTesti()">&#8594;</button>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter-section">
+    <div class="newsletter-inner">
+      <h2>Get Inspired. <em>Stay Informed.</em></h2>
+      <p>Subscribe for travel deals, destination guides, and wanderlust fuel.</p>
+      <form class="nl-form" onsubmit="handleNewsletter(event)">
+        <input type="email" placeholder="your@email.com" required/>
+        <button type="submit" class="btn-primary">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="section-header">
+      <p class="section-tag">✦ Get in Touch</p>
+      <h2>Contact <em>Us</em></h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="cinfo-item"><span>📍</span><div><strong>Address</strong><p>123 Explorer Avenue, Travel City, TC 45678</p></div></div>
+        <div class="cinfo-item"><span>📞</span><div><strong>Phone</strong><p>+1 (800) WANDER-1</p></div></div>
+        <div class="cinfo-item"><span>✉️</span><div><strong>Email</strong><p>hello@wanderlust.travel</p></div></div>
+        <div class="cinfo-item"><span>🕐</span><div><strong>Hours</strong><p>Mon–Fri: 9am–6pm, Sat: 10am–4pm</p></div></div>
+      </div>
+      <form class="contact-form" onsubmit="handleContact(event)">
+        <div class="form-row">
+          <input type="text" placeholder="Your Name" required/>
+          <input type="email" placeholder="Email Address" required/>
+        </div>
+        <input type="text" placeholder="Subject"/>
+        <textarea placeholder="Your message..." rows="5" required></textarea>
+        <button type="submit" class="btn-primary">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="nav-logo" style="font-size:1.5rem">✦ Wanderlust</div>
+        <p>Crafting journeys that last a lifetime. Travel with purpose, travel with us.</p>
+        <div class="social-links">
+          <a href="#">FB</a><a href="#">IG</a><a href="#">TW</a><a href="#">YT</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Destinations</h4>
+        <ul><li><a href="#">Europe</a></li><li><a href="#">Asia</a></li><li><a href="#">Americas</a></li><li><a href="#">Africa</a></li><li><a href="#">Oceania</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul><li><a href="#">About Us</a></li><li><a href="#">Blog</a></li><li><a href="#">Careers</a></li><li><a href="#">Press</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul><li><a href="#">FAQ</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li><li><a href="#">Cancellation</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Wanderlust Travel. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- MODALS -->
+  <div class="modal-overlay" id="bookModal">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('bookModal')">✕</button>
+      <h2>Plan Your Trip</h2>
+      <form onsubmit="submitBooking(event)">
+        <div class="form-row">
+          <input type="text" placeholder="Full Name" required/>
+          <input type="email" placeholder="Email" required/>
+        </div>
+        <div class="form-row">
+          <input type="text" placeholder="Destination" required/>
+          <input type="date" required/>
+        </div>
+        <div class="form-row">
+          <select><option>1 Person</option><option>2 People</option><option>Family</option><option>Group</option></select>
+          <select><option>Economy</option><option>Business</option><option>Luxury</option></select>
+        </div>
+        <textarea placeholder="Special requests..." rows="3"></textarea>
+        <button type="submit" class="btn-primary" style="width:100%">Confirm Booking</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal modal-sm">
+      <button class="modal-close" onclick="closeModal('loginModal')">✕</button>
+      <h2>Welcome Back</h2>
+      <form onsubmit="submitLogin(event)">
+        <input type="email" placeholder="Email Address" required/>
+        <input type="password" placeholder="Password" required/>
+        <button type="submit" class="btn-primary" style="width:100%">Login</button>
+        <p style="text-align:center;margin-top:1rem;color:var(--muted)">Don't have an account? <a href="#" style="color:var(--accent)">Sign Up</a></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
